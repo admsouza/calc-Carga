@@ -37,7 +37,7 @@ const CalcInssAt = () => {
 }
 
 const CalInssOutros = () => {
-  const inssout = resultbase * 0.11;
+  const inssout = outroVinculo * 0.11;
   if (resultvinculo > 7507.49) {
     setOutros(825.82);
   } else {

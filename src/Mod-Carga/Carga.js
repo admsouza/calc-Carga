@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
+import TextField from '@mui/material/TextField';
+import "./Carga.css";
+
+
 
 const Carga = () => {
   const [recebido, setRecebido] = useState(0);
@@ -57,55 +61,69 @@ const Carga = () => {
   };
 
   return (
-    <div>
-      <label for="input1">Valor Recebido:</label>
-      <input
+    
+ 
+    <div className="main">
+         {/* id="outlined-basic" label="Outlined" variant="outlined" */}
+       
+
+ 
+   <TextField
         type="number"
-        id="input1"
+        label="Valor Recebido"
+        id="input"
         onBlur={BaseRecebido}
         value={recebido}
-        name="input1"
+       
         onChange={(e) => setRecebido(+e.target.value)}
       />
+  
+     
       <br />
 
-      <label for="input2">Recebido em Outros Vinculos:</label>
-      <input
+
+<TextField
+        label ="Outros Vinculos"
         type="number"
-        id="input2"
-        name="input2"
+        id="input"
+      
         onBlur={BaseOutrosVin}
         value={outroVinculo}
         onChange={(e) => setOutroVinculo(+e.target.value)}
       />
+
+
+
       <br />
 
-      <label for="input3">Dependentes:</label>
-      <input
+    
+  
+      <TextField
+      label ="Dependentes "
         type="number"
-        id="input3"
-        name="input3"
+        id="input"
         onFocus={CalcInss}
         value={dependentes}
         onChange={(e) => setDependentes(+e.target.value)}
       />
       <br />
 
-      <label for="input4">Pensão:</label>
-      <input
+    
+      <TextField
+      label ="Pensão "
         type="number"
-        id="input4"
-        name="input4"
+        id="input"
+        
         value={pensao}
         onChange={(e) => setPensao(+e.target.value)}
       />
       <br />
 
-      <label for="input5">Previdência Complementar:</label>
-      <input
+      <TextField
+      label ="Prev. Complementar "
         type="number"
-        id="input5"
-        name="input5"
+        id="input"
+        
         onFocus={CalcInssFinal}
         value={pcomplementar}
         onChange={(e) => setPComplementar(+e.target.value)}

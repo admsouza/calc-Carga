@@ -1,8 +1,16 @@
-import React, { useState} from "react";
-import TextField from '@mui/material/TextField';
+import React, { useState } from "react";
+import TextField from "@mui/material/TextField";
+
+
 import "./Carga.css";
 
 
+const formatCurrency = (value) => {
+  return value.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
+};
 
 const Carga = () => {
   const [recebido, setRecebido] = useState(0);
@@ -10,6 +18,9 @@ const Carga = () => {
   const BaseRecebido = () => {
     const ResultB = recebido * 0.2;
     setResultBase(ResultB);
+
+
+    
   };
 
   const [outroVinculo, setOutroVinculo] = useState(0);
@@ -61,80 +72,76 @@ const Carga = () => {
   };
 
   return (
-    
- 
     <div className="main">
-         {/* id="outlined-basic" label="Outlined" variant="outlined" */}
-       
+  
 
- 
-   <TextField
+      <TextField
         type="number"
         label="Valor Recebido"
         id="input"
         onBlur={BaseRecebido}
         value={recebido}
-       
         onChange={(e) => setRecebido(+e.target.value)}
+        size="large"
+        color="success"
+        required
       />
-  
-     
+
       <br />
 
-
-<TextField
-        label ="Outros Vinculos"
+      <TextField
+        label="Outros Vinculos"
         type="number"
         id="input"
-      
         onBlur={BaseOutrosVin}
         value={outroVinculo}
         onChange={(e) => setOutroVinculo(+e.target.value)}
+        color="success"
       />
-
-
 
       <br />
 
-    
-  
       <TextField
-      label ="Dependentes "
+        label="Dependentes "
         type="number"
         id="input"
         onFocus={CalcInss}
         value={dependentes}
         onChange={(e) => setDependentes(+e.target.value)}
+        color="success"
       />
       <br />
 
-    
       <TextField
-      label ="Pensão "
+        label="Pensão "
         type="number"
         id="input"
-        
         value={pensao}
         onChange={(e) => setPensao(+e.target.value)}
+        color="success"
       />
       <br />
 
       <TextField
-      label ="Prev. Complementar "
+        label="Prev. Complementar "
         type="number"
         id="input"
-        
         onFocus={CalcInssFinal}
         value={pcomplementar}
-        onChange={(e) => setPComplementar(+e.target.value)}
+        onChange={(e) => setPComplementar(+e.target.value.formatCurrency)}
+        color="success"
       />
       <br />
+<div>
+      <p> Base Valor Recebido 20% = { formatCurrency (resultbase)}</p>
+      <p> Base Outros Vinculos 20% = { formatCurrency (resultvinculo)}</p>
+      <p> INSS Atual = {formatCurrency(inssatual) }</p>
+      <p> INSS Out. Vinculos = { formatCurrency (inssoutros)}</p>
+      <p> INSS Total = {formatCurrency (insstotal)}</p>
 
-      <p> Base Valor Recebido 20% = {resultbase}</p>
-      <p> Base Outros Vinculos 20% = {resultvinculo}</p>
-      <p> INSS Atual = {inssatual}</p>
-      <p> INSS Out. Vinculos = {inssoutros}</p>
-      <p> INSS Total = {insstotal}</p>
+
+</div>
+      
     </div>
   );
 };

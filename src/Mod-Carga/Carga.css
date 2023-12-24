@@ -1,4 +1,6 @@
+
 .main {
+
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -7,7 +9,9 @@
   text-decoration: double;
   background-color: black;
   color: whitesmoke;
+
 }
+
 
 
 #input {
@@ -16,10 +20,11 @@
 }
 
 .box-calculadora{
+ 
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
+  height: 800vh;
   align-items: center;
   text-decoration: double;
   background-color: greenyellow;
@@ -31,13 +36,15 @@
   
 }
 .box-mcalculo{
-
+ 
   border: 2px dashed #ff0000 ;
   padding: 25px;
   color: black;
   width: 40vh;
+
 }
 .box-memoria{
+ 
 margin-top: 1%;
   text-align: center;
   font-weight: bold;
@@ -46,6 +53,8 @@ margin-top: 1%;
  
 }
 #result{
+
+
   font-weight: bold;
   color: chocolate;
 }

@@ -84,8 +84,13 @@ const Carga = () => {
   };
 
   return (
-    <div className="main">
+    <div className="titulo">
       <h1>Calculadora - Transporte de Carga </h1>
+  
+    
+
+    <div className="main">
+  
 
       <div className="box-calculadora">
         <TextField
@@ -146,7 +151,9 @@ const Carga = () => {
           color="success"
         />
         <br />
-        <div className=" box-mcalculo">
+
+      </div>
+      <div className="box-mcalculo">
           <p className="box-memoria"> Memória de Cálculo</p>
           <p>
             Base Valor Recebido 20% ={" "}
@@ -182,8 +189,9 @@ const Carga = () => {
             {" "}
             Pensão = <span id="result">{formatCurrency(resultpesnsao)}</span>
           </p>
+         
         </div>
-      </div>
+    </div>
     </div>
   );
 };

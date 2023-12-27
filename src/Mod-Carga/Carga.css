@@ -12,11 +12,10 @@ html {
 .main {
   text-align: center;
   display: flex;
-  height: 100vh;
   background-color: black;
   color: whitesmoke;
   display: table-cell;
- 
+  align-items: center;
 }
 
 #input {
@@ -26,22 +25,20 @@ html {
 
 .box-calculadora {
   display: flex;
-  justify-content: center;
+
   flex-direction: column;
-  height: 50vh;
+
   align-items: center;
   text-decoration: double;
   background-color: greenyellow;
   color: green;
-  width: 500px;
+  width: 400px;
   border-radius: 2%;
-  margin-top: 4vh;
-  margin-bottom: -135%;
- 
-  margin-left: 100%;
+  margin-left: 65%;
+  padding-top: 20%;
+  padding-bottom: -1%;
 }
 .box-mcalculo {
-  
   display: grid;
   padding: 3vw;
   color: black;
@@ -52,6 +49,7 @@ html {
   text-align: center;
   margin-left: 300%;
   margin-top: -90%;
+  width: 300px;
 }
 .box-memoria {
   margin-top: 1vh;

@@ -91,7 +91,6 @@ const Carga = () => {
 
     <div className="main">
   
-
       <div className="box-calculadora">
         <TextField
           type="number"
@@ -151,9 +150,7 @@ const Carga = () => {
           color="success"
         />
         <br />
-
-      </div>
-      <div className="box-mcalculo">
+        <div className="box-mcalculo">
           <p className="box-memoria"> Memória de Cálculo</p>
           <p>
             Base Valor Recebido 20% ={" "}
@@ -191,6 +188,8 @@ const Carga = () => {
           </p>
          
         </div>
+      </div>
+      
     </div>
     </div>
   );

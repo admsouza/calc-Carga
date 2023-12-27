@@ -9,7 +9,8 @@ html {
   text-align: center;
   background-color: black;
   color: bisque;
-  margin-bottom: 5vh;
+  margin-bottom: 1vh;
+  
   
 }
 .main {
@@ -41,7 +42,7 @@ html {
   color: green;
   width: 400px;
   border-radius: 2%;
-  margin-left: 20%;
+  margin-left: 10%;
   padding-top: 15%;
   height: 400px;
   padding: 15px;

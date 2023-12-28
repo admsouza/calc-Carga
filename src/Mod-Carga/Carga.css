@@ -1,7 +1,6 @@
 html {
-  
   background-color: black;
-  margin-top: 10%;
+  margin-top: 1%;
   flex-direction: column;
 }
 
@@ -10,8 +9,6 @@ html {
   background-color: black;
   color: bisque;
   margin-bottom: 1vh;
-  
-  
 }
 .main {
   text-align: center;
@@ -22,9 +19,7 @@ html {
   align-items: center;
   padding: 100px;
   padding-left: 0px;
-  justify-content: center;
-  width: 45%;
-  
+  width: 10%;
 }
 
 #input {
@@ -46,8 +41,6 @@ html {
   padding-top: 15%;
   height: 400px;
   padding: 15px;
-
-
 }
 .box-mcalculo {
   display: grid;
@@ -78,9 +71,4 @@ html {
 p {
   color: bisque;
   text-align: justify;
-}
-@media screen and (max-width: 600px) {
-  .box-calculador {
-    width: 500%; /* Reduz a largura para telas menores */
-  }
 }

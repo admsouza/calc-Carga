@@ -71,12 +71,29 @@ const Carga = () => {
     SetResultPesnsao(formatvalor);
   };
 
+  const [resultirrfsimplicado, setResultIrrfSimplicado] = useState("");
+  const CalIrrfSimpl = () => {
+    const resultirrsimpl = resultbase + resultvinculo;
+    if (resultirrsimpl > 4664.68) {
+      setResultIrrfSimplicado(resultirrsimpl * 0.275 - 884.96);
+    } else if (resultirrsimpl >= 3751.06) {
+      setResultIrrfSimplicado(resultirrsimpl * 0.225 - 651.73);
+    } else if (resultirrsimpl >= 2826.66) {
+      setResultIrrfSimplicado(resultirrsimpl * 0.15 - 370.4);
+    } else if (resultirrsimpl >= 2112.01) {
+      setResultIrrfSimplicado(resultirrsimpl * 0.075 - 158.4);
+    } else {
+      setResultIrrfSimplicado(0.0);
+    }
+  };
+
   const [pcomplementar, setPComplementar] = useState("");
 
   const CalcInss = () => {
     CalcInssAt();
     CalInssOutros();
     FormatPensao();
+    CalIrrfSimpl();
   };
 
   const Format = () => {
@@ -86,111 +103,112 @@ const Carga = () => {
   return (
     <div className="titulo">
       <h1>Calculadora - Transporte de Carga </h1>
-  
-    
 
-    <div className="main">
-  
-      <div className="box-calculadora">
-        <TextField
-          type="number"
-          label="Valor Recebido"
-          id="input"
-          onBlur={BaseRecebido}
-          value={formatCurrency(recebido)}
-          onChange={(e) => setRecebido(e.target.value)}
-          size="large"
-          color="success"
-          required
-        />
+      <div className="main">
+        <div className="box-calculadora">
+          <TextField
+            type="number"
+            label="Valor Recebido"
+            id="input"
+            onBlur={BaseRecebido}
+            value={formatCurrency(recebido)}
+            onChange={(e) => setRecebido(e.target.value)}
+            size="large"
+            color="success"
+            required
+          />
 
-        <br />
+          <br />
 
-        <TextField
-          label="Outros Vinculos"
-          type="number"
-          id="input"
-          onBlur={BaseOutrosVin}
-          value={formatCurrency(outroVinculo)}
-          onChange={(e) => setOutroVinculo(e.target.value)}
-          color="success"
-        />
+          <TextField
+            label="Outros Vinculos"
+            type="number"
+            id="input"
+            onBlur={BaseOutrosVin}
+            value={formatCurrency(outroVinculo)}
+            onChange={(e) => setOutroVinculo(e.target.value)}
+            color="success"
+          />
 
-        <br />
+          <br />
 
-        <TextField
-          label="Dependentes"
-          type="number"
-          id="input"
-          onBlur={CalcDependentes}
-          value={formatCurrency(dependentes)}
-          onChange={(e) => setDependentes(e.target.value)}
-          color="success"
-        />
-        <br />
+          <TextField
+            label="Dependentes"
+            type="number"
+            id="input"
+            onBlur={CalcDependentes}
+            value={formatCurrency(dependentes)}
+            onChange={(e) => setDependentes(e.target.value)}
+            color="success"
+          />
+          <br />
 
-        <TextField
-          label="Pensão "
-          type="number"
-          id="input"
-          onFocus={CalcInss}
-          value={formatCurrency(pensao)}
-          onChange={(e) => setPensao(e.target.value)}
-          color="success"
-        />
-        <br />
+          <TextField
+            label="Pensão "
+            type="number"
+            id="input"
+            onFocus={CalcInss}
+            value={formatCurrency(pensao)}
+            onChange={(e) => setPensao(e.target.value)}
+            color="success"
+          />
+          <br />
 
-        <TextField
-          label="Prev. Complementar "
-          type="number"
-          id="input"
-          onFocus={Format}
-          value={formatCurrency(pcomplementar)}
-          onChange={(e) => setPComplementar(e.target.value)}
-          color="success"
-        />
-        <br />
-        <div className="box-mcalculo">
-          <p className="box-memoria"> Memória de Cálculo</p>
-          <p>
-            Base Valor Recebido 20% ={" "}
-            <span id="result">{formatCurrency(resultbase)}</span>
-          </p>
+          <TextField
+            label="Prev. Complementar "
+            type="number"
+            id="input"
+            onFocus={Format}
+            value={formatCurrency(pcomplementar)}
+            onChange={(e) => setPComplementar(e.target.value)}
+            color="success"
+          />
+          <br />
+          <div className="box-mcalculo">
+            <p className="box-memoria"> Memória de Cálculo</p>
+            <p>
+              Base Valor Recebido 20% ={" "}
+              <span id="result">{formatCurrency(resultbase)}</span>
+            </p>
 
-          <p>
-            {" "}
-            Base Outros Vinculos 20% ={" "}
-            <span id="result">{formatCurrency(resultvinculo)}</span>
-          </p>
+            <p>
+              {" "}
+              Base Outros Vinculos 20% ={" "}
+              <span id="result">{formatCurrency(resultvinculo)}</span>
+            </p>
 
-          <p>
-            {" "}
-            INSS Atual = <span id="result">{formatCurrency(inssatual)} </span>
-          </p>
-          <p>
-            {" "}
-            INSS Out. Vinculos ={" "}
-            <span id="result">{formatCurrency(inssoutros)}</span>
-          </p>
-          <p>
-            {" "}
-            INSS Total = <span id="result">{formatCurrency(insstotal)}</span>
-          </p>
+            <p>
+              {" "}
+              INSS Atual = <span id="result">{formatCurrency(inssatual)} </span>
+            </p>
+            <p>
+              {" "}
+              INSS Out. Vinculos ={" "}
+              <span id="result">{formatCurrency(inssoutros)}</span>
+            </p>
+            <p>
+              {" "}
+              INSS Total = <span id="result">{formatCurrency(insstotal)}</span>
+            </p>
 
-          <p>
-            {" "}
-            Dependentes ={" "}
-            <span id="result">{formatCurrency(resultdependentes)}</span>
-          </p>
-          <p>
-            {" "}
-            Pensão = <span id="result">{formatCurrency(resultpesnsao)}</span>
-          </p>
-         
+            <p>
+              {" "}
+              Dependentes ={" "}
+              <span id="result">{formatCurrency(resultdependentes)}</span>
+            </p>
+            <p>
+              {" "}
+              Pensão = <span id="result">{formatCurrency(resultpesnsao)}</span>
+            </p>
+
+            <p>
+              {" "}
+              IRRF Simplificado ={" "}
+              <span id="result">{formatCurrency(resultirrfsimplicado)}</span>
+            </p>
+          </div>
         </div>
       </div>
-      
-    </div>
     </div>
   );
 };

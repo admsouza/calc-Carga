@@ -87,6 +87,18 @@ const Carga = () => {
     }
   };
 
+  const [resultsenat, setResultSenat] = useState("");
+  const CaclSenat = () => {
+    const descontosenat = (resultbase + resultvinculo) * 0.01;
+    setResultSenat(descontosenat);
+  };
+
+  const [resultsest, setResultSest] = useState("");
+  const CaclSest = () => {
+    const descontosest = (resultbase + resultvinculo) * 0.015;
+    setResultSest(descontosest);
+  };
+
   const [pcomplementar, setPComplementar] = useState("");
 
   const CalcInss = () => {
@@ -94,6 +106,8 @@ const Carga = () => {
     CalInssOutros();
     FormatPensao();
     CalIrrfSimpl();
+    CaclSenat();
+    CaclSest();
   };
 
   const Format = () => {
@@ -205,6 +219,14 @@ const Carga = () => {
               {" "}
               IRRF Simplificado ={" "}
               <span id="result">{formatCurrency(resultirrfsimplicado)}</span>
+            </p>
+            <p>
+              {" "}
+              SENAT 1% = <span id="result">{formatCurrency(resultsenat)}</span>
+            </p>
+            <p>
+              {" "}
+              SEST 1,5% = <span id="result">{formatCurrency(resultsest)}</span>
             </p>
           </div>
         </div>

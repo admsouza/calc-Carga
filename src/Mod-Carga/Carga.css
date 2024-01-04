@@ -44,16 +44,15 @@ html {
 }
 .box-mcalculo {
   display: grid;
-  padding: 3vw;
+  padding: 0vw;
   color: black;
-  width: 25vh;
   margin-right: 0;
   padding-left: 20%;
   border: 2px dashed #ff0000;
   text-align: center;
   margin-left: 300%;
-  margin-top: -110%;
-  width: 300px;
+  margin-top: -150%;
+  width: 400px;
 }
 .box-memoria {
   margin-top: 1vh;
@@ -61,7 +60,7 @@ html {
   font-weight: bold;
   color: #ff0000;
   font-weight: bold;
-  padding-right: 10%;
+  padding-right: 20%;
 }
 #result {
   font-weight: bold;

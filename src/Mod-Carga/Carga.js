@@ -7,7 +7,8 @@ const formatCurrency = (value) => {
   return value.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
-    minimumFractionDigits: 2,
+    minimumFractionDigits: 2 ,
+   
   });
 };
 
@@ -28,13 +29,16 @@ const Carga = () => {
   };
 
   const [inssatual, setInssAtual] = useState("");
+  
   const CalcInssAt = () => {
     const inssat = resultbase * 0.11;
     if (resultbase > 7507.49) {
       setInssAtual(825.82);
     } else {
       setInssAtual(inssat);
+      
     }
+    
   };
 
   const [inssoutros, setOutros] = useState("");
@@ -44,17 +48,22 @@ const Carga = () => {
       setOutros(825.82);
     } else {
       setOutros(inssout);
+     
     }
+  
   };
-
+ 
   const [insstotal, setInssTotal] = useState("");
+
   const CalcInssFinal = () => {
     const inssfinal = inssatual + inssoutros;
-    if (inssfinal > 825.82) {
+   
+    if   (inssfinal > 825.82) {
       setInssTotal(inssfinal - 825.82);
     } else {
       setInssTotal(inssfinal);
     }
+ 
   };
 
   const [dependentes, setDependentes] = useState("");
@@ -99,6 +108,16 @@ const Carga = () => {
     setResultSest(descontosest);
   };
 
+  const [resultliquido,  SetResultLiquido] = useState("")
+ 
+  const CalcLiq = () => {
+  
+    const valorliquido = (resultbase + resultvinculo) - (inssoutros + inssatual + resultsest + resultsenat + resultirrfsimplicado)
+    SetResultLiquido (valorliquido)
+  
+  }
+
+
   const [pcomplementar, setPComplementar] = useState("");
 
   const CalcInss = () => {
@@ -108,6 +127,8 @@ const Carga = () => {
     CalIrrfSimpl();
     CaclSenat();
     CaclSest();
+  
+    
   };
 
   const Format = () => {
@@ -161,7 +182,7 @@ const Carga = () => {
             label="Pensão "
             type="number"
             id="input"
-            onFocus={CalcInss}
+            onBlur={CalcInss}
             value={formatCurrency(pensao)}
             onChange={(e) => setPensao(e.target.value)}
             color="success"
@@ -173,10 +194,13 @@ const Carga = () => {
             type="number"
             id="input"
             onFocus={Format}
+            onBlur={CalcLiq}
             value={formatCurrency(pcomplementar)}
             onChange={(e) => setPComplementar(e.target.value)}
             color="success"
           />
+
+         <h1>Valor Líquido: {formatCurrency( resultliquido )}</h1>
           <br />
           <div className="box-mcalculo">
             <p className="box-memoria"> Memória de Cálculo</p>

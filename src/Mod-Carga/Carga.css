@@ -48,14 +48,13 @@ body {
 }
 .box-mcalculo {
   display: grid;
- 
   color: black;
   margin-right: 0;
   padding-left: 10%;
   border: 2px dashed #ff0000;
   text-align: center;
   margin-left: 300%;
-  margin-top: -150%;
+  margin-top: -160%;
   width: 350px;
   box-sizing: border-box;
 }
@@ -66,6 +65,7 @@ body {
   color: #ff0000;
   font-weight: bold;
   padding-right: 20%;
+  padding-bottom: -1%;
 }
 #result {
   font-weight: bold;

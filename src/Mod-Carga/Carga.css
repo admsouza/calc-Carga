@@ -1,9 +1,13 @@
 html {
   background-color: black;
-  margin-top: 1%;
-  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  
 }
-
+body {
+  margin: 1%;
+  
+}
 .titulo {
   text-align: center;
   background-color: black;
@@ -11,21 +15,22 @@ html {
   margin-bottom: 1vh;
 }
 .main {
-  text-align: center;
-  display: flex;
+  
   background-color: black;
   color: whitesmoke;
+  display: flex;
   display: table-cell;
   align-items: center;
-  padding: 100px;
-  padding-left: 0px;
-  width: 10%;
+  padding: 2%;
+  width: 80%;
+  margin: auto;
 }
 
 #input {
   text-align: center;
   font-weight: bold;
   padding: 20px;
+  width: 80%;
 }
 
 .box-calculadora {
@@ -35,24 +40,24 @@ html {
   text-decoration: double;
   background-color: greenyellow;
   color: green;
-  width: 400px;
+  width: 80%; 
   border-radius: 2%;
-  margin-left: 10%;
-  padding-top: 15%;
-  height: 400px;
-  padding: 15px;
+  padding: 5%;
+  box-sizing: border-box;
+  margin: 0 auto; 
 }
 .box-mcalculo {
   display: grid;
-  padding: 0vw;
+ 
   color: black;
   margin-right: 0;
-  padding-left: 20%;
+  padding-left: 10%;
   border: 2px dashed #ff0000;
   text-align: center;
   margin-left: 300%;
   margin-top: -150%;
-  width: 400px;
+  width: 350px;
+  box-sizing: border-box;
 }
 .box-memoria {
   margin-top: 1vh;
@@ -71,3 +76,4 @@ p {
   color: bisque;
   text-align: justify;
 }
+

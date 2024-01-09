@@ -200,8 +200,8 @@ const Carga = () => {
             color="success"
           />
 
-         <h1>Valor Líquido: {formatCurrency( resultliquido )}</h1>
-          <br />
+         <h1 className="liquido">Valor Líquido {formatCurrency( resultliquido )}</h1>
+
           <div className="box-mcalculo">
             <p className="box-memoria"> Memória de Cálculo</p>
             <p>

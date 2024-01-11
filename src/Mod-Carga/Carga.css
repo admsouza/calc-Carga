@@ -71,10 +71,12 @@ body {
   font-weight: bold;
   color: chocolate;
 }
-.mcalculo,
+.mcalculo, 
 p {
   color: bisque;
   text-align: justify;
   font-size: 12px;
 }
-
+.liquido{
+  font-size: 20px;
+}

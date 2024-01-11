@@ -82,15 +82,15 @@ const Carga = () => {
 
   const [resultirrfsimplicado, setResultIrrfSimplicado] = useState("");
   const CalIrrfSimpl = () => {
-    const resultirrsimpl = resultbase + resultvinculo;
+    const resultirrsimpl = resultbase + resultvinculo - 528 ;
     if (resultirrsimpl > 4664.68) {
-      setResultIrrfSimplicado(resultirrsimpl * 0.275 - 884.96);
+      setResultIrrfSimplicado((resultirrsimpl * 0.275 ) - 884.96);
     } else if (resultirrsimpl >= 3751.06) {
-      setResultIrrfSimplicado(resultirrsimpl * 0.225 - 651.73);
+      setResultIrrfSimplicado((resultirrsimpl * 0.225) - 651.73);
     } else if (resultirrsimpl >= 2826.66) {
-      setResultIrrfSimplicado(resultirrsimpl * 0.15 - 370.4);
+      setResultIrrfSimplicado((resultirrsimpl* 0.15) - 370.4);
     } else if (resultirrsimpl >= 2112.01) {
-      setResultIrrfSimplicado(resultirrsimpl * 0.075 - 158.4);
+      setResultIrrfSimplicado((resultirrsimpl * 0.075) - 158.4);
     } else {
       setResultIrrfSimplicado(0.0);
     }

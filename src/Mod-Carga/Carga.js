@@ -7,8 +7,7 @@ const formatCurrency = (value) => {
   return value.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
-    minimumFractionDigits: 2 ,
-   
+    minimumFractionDigits: 2,
   });
 };
 
@@ -29,16 +28,14 @@ const Carga = () => {
   };
 
   const [inssatual, setInssAtual] = useState("");
-  
+
   const CalcInssAt = () => {
     const inssat = resultbase * 0.11;
     if (resultbase > 7507.49) {
       setInssAtual(825.82);
     } else {
       setInssAtual(inssat);
-      
     }
-    
   };
 
   const [inssoutros, setOutros] = useState("");
@@ -48,22 +45,19 @@ const Carga = () => {
       setOutros(825.82);
     } else {
       setOutros(inssout);
-     
     }
-  
   };
- 
+
   const [insstotal, setInssTotal] = useState("");
 
   const CalcInssFinal = () => {
     const inssfinal = inssatual + inssoutros;
-   
-    if   (inssfinal > 825.82) {
-      setInssTotal(inssfinal - 825.82);
+
+    if (inssfinal > 825.82) {
+      setInssTotal(825.82);
     } else {
       setInssTotal(inssfinal);
     }
- 
   };
 
   const [dependentes, setDependentes] = useState("");
@@ -79,20 +73,50 @@ const Carga = () => {
     const formatvalor = pensao * 1;
     SetResultPesnsao(formatvalor);
   };
+  const [prevcompl, setPrevCompl] = useState("");
+  const [resultprevcompl, SetResultPrevcompl] = useState("");
+  const FormatPrev = () => {
+    const formaprev = prevcompl * 1;
+    SetResultPrevcompl(formaprev);
+  };
 
   const [resultirrfsimplicado, setResultIrrfSimplicado] = useState("");
   const CalIrrfSimpl = () => {
-    const resultirrsimpl = resultbase + resultvinculo - 528 ;
+    const resultirrsimpl = resultbase + resultvinculo - 528;
     if (resultirrsimpl > 4664.68) {
-      setResultIrrfSimplicado((resultirrsimpl * 0.275 ) - 884.96);
+      setResultIrrfSimplicado(resultirrsimpl * 0.275 - 884.96);
     } else if (resultirrsimpl >= 3751.06) {
-      setResultIrrfSimplicado((resultirrsimpl * 0.225) - 651.73);
+      setResultIrrfSimplicado(resultirrsimpl * 0.225 - 651.73);
     } else if (resultirrsimpl >= 2826.66) {
-      setResultIrrfSimplicado((resultirrsimpl* 0.15) - 370.4);
+      setResultIrrfSimplicado(resultirrsimpl * 0.15 - 370.4);
     } else if (resultirrsimpl >= 2112.01) {
-      setResultIrrfSimplicado((resultirrsimpl * 0.075) - 158.4);
+      setResultIrrfSimplicado(resultirrsimpl * 0.075 - 158.4);
     } else {
       setResultIrrfSimplicado(0.0);
+    }
+  };
+  
+  const [deducoeslegais, setDeducoesLegais] = useState("");
+  const Cacldeducoes = () => {
+    const resultdeducoes =  (insstotal + prevcompl + pensao + dependentes) * 1
+    setDeducoesLegais(resultdeducoes)
+  }
+
+
+  const [resultirrdeducoes, setResultIrrDeducoes] = useState("");
+  const CalIrrfDeducoes = () => {
+    const resultdeducoes = resultbase + resultvinculo - ( insstotal + resultdependentes + resultprevcompl + resultpesnsao)
+
+    if (resultdeducoes > 4664.68) {
+      setResultIrrDeducoes(resultdeducoes * 0.275 - 884.96);
+    } else if (resultdeducoes >= 3751.06) {
+      setResultIrrDeducoes(resultdeducoes * 0.225 - 651.73);
+    } else if (resultdeducoes >= 2826.66) {
+      setResultIrrDeducoes(resultdeducoes * 0.15 - 370.4);
+    } else if (resultdeducoes >= 2112.01) {
+      setResultIrrDeducoes(resultdeducoes * 0.075 - 158.4);
+    } else {
+      setResultIrrDeducoes(0.0);
     }
   };
 
@@ -108,31 +132,37 @@ const Carga = () => {
     setResultSest(descontosest);
   };
 
-  const [resultliquido,  SetResultLiquido] = useState("")
- 
+  const [resultliquido, SetResultLiquido] = useState("");
+
   const CalcLiq = () => {
+    const valorliquido =
+      resultbase +
+      resultvinculo -
+      (inssoutros +
+        inssatual +
+        resultsest +
+        resultsenat +
+        resultirrfsimplicado);
+    SetResultLiquido(valorliquido);
+    FormatPrev();
+    CalIrrfDeducoes();
   
-    const valorliquido = (resultbase + resultvinculo) - (inssoutros + inssatual + resultsest + resultsenat + resultirrfsimplicado)
-    SetResultLiquido (valorliquido)
-  
-  }
-
-
-  const [pcomplementar, setPComplementar] = useState("");
+  };
 
   const CalcInss = () => {
     CalcInssAt();
     CalInssOutros();
-    FormatPensao();
     CalIrrfSimpl();
     CaclSenat();
     CaclSest();
-  
+    FormatPensao();
     
   };
 
   const Format = () => {
     CalcInssFinal(FormatPensao());
+    Cacldeducoes();
+    
   };
 
   return (
@@ -195,12 +225,14 @@ const Carga = () => {
             id="input"
             onFocus={Format}
             onBlur={CalcLiq}
-            value={formatCurrency(pcomplementar)}
-            onChange={(e) => setPComplementar(e.target.value)}
+            value={formatCurrency(prevcompl)}
+            onChange={(e) => setPrevCompl(e.target.value)}
             color="success"
           />
 
-         <h1 className="liquido">Valor Líquido {formatCurrency( resultliquido )}</h1>
+          <h1 className="liquido">
+            Valor Líquido {formatCurrency(resultliquido)}
+          </h1>
 
           <div className="box-mcalculo">
             <p className="box-memoria"> Memória de Cálculo</p>
@@ -246,12 +278,23 @@ const Carga = () => {
             </p>
             <p>
               {" "}
+              IRRF Deduções Legais ={" "}
+              <span id="result">{formatCurrency(resultirrdeducoes)}</span>
+            </p>
+            <p>
+              {" "}
               SENAT 1% = <span id="result">{formatCurrency(resultsenat)}</span>
             </p>
             <p>
               {" "}
               SEST 1,5% = <span id="result">{formatCurrency(resultsest)}</span>
             </p>
+            <p>
+              {" "}
+              Prev. Complementar={" "}
+              <span id="result">{formatCurrency(resultprevcompl)}</span>
+            </p>
+            
           </div>
         </div>
       </div>

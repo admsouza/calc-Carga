@@ -2,11 +2,9 @@ html {
   background-color: black;
   margin: 0;
   padding: 0;
-  
 }
 body {
   margin: 1%;
-  
 }
 .titulo {
   text-align: center;
@@ -15,7 +13,6 @@ body {
   margin-bottom: 1vh;
 }
 .main {
-  
   background-color: black;
   color: whitesmoke;
   display: flex;
@@ -40,11 +37,11 @@ body {
   text-decoration: double;
   background-color: greenyellow;
   color: green;
-  width: 80%; 
+  width: 80%;
   border-radius: 2%;
   padding: 5%;
   box-sizing: border-box;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 .box-mcalculo {
   display: grid;
@@ -71,12 +68,12 @@ body {
   font-weight: bold;
   color: chocolate;
 }
-.mcalculo, 
+.mcalculo,
 p {
   color: bisque;
   text-align: justify;
   font-size: 12px;
 }
-.liquido{
+.liquido {
   font-size: 20px;
 }

@@ -80,6 +80,12 @@ const Carga = () => {
     SetResultPrevcompl(formaprev);
   };
 
+  const [outrasdeducoes, SetOutrasDeducoes] = useState("");
+  const FormatDedu = () => {
+    const outdeducoes = outrasdeducoes * 1;
+    SetOutrasDeducoes(outdeducoes);
+  };
+
   const [resultirrfsimplicado, setResultIrrfSimplicado] = useState("");
   const CalIrrfSimpl = () => {
     const resultirrsimpl = resultbase + resultvinculo - 528;
@@ -95,17 +101,20 @@ const Carga = () => {
       setResultIrrfSimplicado(0.0);
     }
   };
-  
+
   const [deducoeslegais, setDeducoesLegais] = useState("");
   const Cacldeducoes = () => {
-    const resultdeducoes =  (insstotal + prevcompl + pensao + dependentes) * 1
-    setDeducoesLegais(resultdeducoes)
-  }
-
+    const resultdeducoes =
+      (insstotal + prevcompl + resultpesnsao + dependentes) * 1;
+    setDeducoesLegais(resultdeducoes);
+  };
 
   const [resultirrdeducoes, setResultIrrDeducoes] = useState("");
   const CalIrrfDeducoes = () => {
-    const resultdeducoes = resultbase + resultvinculo - ( insstotal + resultdependentes + resultprevcompl + resultpesnsao)
+    const resultdeducoes =
+      resultbase +
+      resultvinculo -
+      (insstotal + resultdependentes + resultprevcompl + resultpesnsao);
 
     if (resultdeducoes > 4664.68) {
       setResultIrrDeducoes(resultdeducoes * 0.275 - 884.96);
@@ -144,9 +153,6 @@ const Carga = () => {
         resultsenat +
         resultirrfsimplicado);
     SetResultLiquido(valorliquido);
-    FormatPrev();
-    CalIrrfDeducoes();
-  
   };
 
   const CalcInss = () => {
@@ -155,14 +161,18 @@ const Carga = () => {
     CalIrrfSimpl();
     CaclSenat();
     CaclSest();
-    FormatPensao();
-    
   };
 
   const Format = () => {
     CalcInssFinal(FormatPensao());
+    FormatPrev(); //primeiro formata
+    //depois calcula
+  };
+
+  const CalcDeducoes = () => {
     Cacldeducoes();
-    
+    CalIrrfDeducoes();
+    FormatDedu();
   };
 
   return (
@@ -223,10 +233,21 @@ const Carga = () => {
             label="Prev. Complementar "
             type="number"
             id="input"
-            onFocus={Format}
-            onBlur={CalcLiq}
+            onBlur={Format}
+            onFocus={CalcLiq}
             value={formatCurrency(prevcompl)}
             onChange={(e) => setPrevCompl(e.target.value)}
+            color="success"
+          />
+          <br />
+
+          <TextField
+            label="Outras Deduções "
+            type="number"
+            id="input"
+            onFocus={CalcDeducoes}
+            value={formatCurrency(outrasdeducoes)}
+            onChange={(e) => SetOutrasDeducoes(e.target.value)}
             color="success"
           />
 
@@ -294,7 +315,6 @@ const Carga = () => {
               Prev. Complementar={" "}
               <span id="result">{formatCurrency(resultprevcompl)}</span>
             </p>
-            
           </div>
         </div>
       </div>

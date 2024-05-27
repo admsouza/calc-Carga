@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 
+
 import "./Carga.css";
 
 const formatCurrency = (value) => {
@@ -174,6 +175,7 @@ const Carga = () => {
     CalIrrfDeducoes();
     FormatDedu();
   };
+  
 
   return (
     <div className="titulo">
@@ -234,7 +236,7 @@ const Carga = () => {
             type="number"
             id="input"
             onBlur={Format}
-            onFocus={CalcLiq}
+            onFocus=""
             value={formatCurrency(prevcompl)}
             onChange={(e) => setPrevCompl(e.target.value)}
             color="success"
@@ -254,6 +256,7 @@ const Carga = () => {
           <h1 className="liquido">
             Valor Líquido {formatCurrency(resultliquido)}
           </h1>
+          <button onClick={CalcLiq}>Mostrar Líquido </button>
 
           <div className="box-mcalculo">
             <p className="box-memoria"> Memória de Cálculo</p>
@@ -315,6 +318,8 @@ const Carga = () => {
               Prev. Complementar={" "}
               <span id="result">{formatCurrency(resultprevcompl)}</span>
             </p>
+
+         
           </div>
         </div>
       </div>

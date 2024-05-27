@@ -5,12 +5,19 @@ html {
 }
 body {
   margin: 1%;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+
+
 }
 .titulo {
   text-align: center;
   background-color: black;
   color: bisque;
   margin-bottom: 1vh;
+  
+  
 }
 .main {
   background-color: black;
@@ -21,6 +28,7 @@ body {
   padding: 2%;
   width: 80%;
   margin: auto;
+  
 }
 
 #input {
@@ -77,3 +85,4 @@ p {
 .liquido {
   font-size: 20px;
 }
+

@@ -87,17 +87,26 @@ const Carga = () => {
     SetOutrasDeducoes(outdeducoes);
   };
 
+  const [bcarga, SetBcarga] = useState("")
+  const resultBIr = () => {
+    const baseCarga = (recebido + outroVinculo) * 0.10 - (564.80)
+    SetBcarga(baseCarga)
+    
+  }
+
+
   const [resultirrfsimplicado, setResultIrrfSimplicado] = useState("");
   const CalIrrfSimpl = () => {
-    const resultirrsimpl = resultbase + resultvinculo - 528;
+    const resultirrsimpl = bcarga 
+       
     if (resultirrsimpl > 4664.68) {
-      setResultIrrfSimplicado(resultirrsimpl * 0.275 - 884.96);
+      setResultIrrfSimplicado(resultirrsimpl * 0.275 - 896);
     } else if (resultirrsimpl >= 3751.06) {
-      setResultIrrfSimplicado(resultirrsimpl * 0.225 - 651.73);
-    } else if (resultirrsimpl >= 2826.66) {
-      setResultIrrfSimplicado(resultirrsimpl * 0.15 - 370.4);
-    } else if (resultirrsimpl >= 2112.01) {
-      setResultIrrfSimplicado(resultirrsimpl * 0.075 - 158.4);
+      setResultIrrfSimplicado(resultirrsimpl * 0.225 - 662.77);
+    } else if (resultirrsimpl >= 2828.66) {
+      setResultIrrfSimplicado(resultirrsimpl * 0.15 - 381.44);
+    } else if (resultirrsimpl >= 2259.21) {
+      setResultIrrfSimplicado(resultirrsimpl * 0.075 - 169.44);
     } else {
       setResultIrrfSimplicado(0.0);
     }
@@ -115,7 +124,7 @@ const Carga = () => {
     const resultdeducoes =
       resultbase +
       resultvinculo -
-      (insstotal + resultdependentes + resultprevcompl + resultpesnsao);
+      (insstotal + resultdependentes + resultprevcompl + resultpesnsao * 0.10);
 
     if (resultdeducoes > 4664.68) {
       setResultIrrDeducoes(resultdeducoes * 0.275 - 884.96);
@@ -146,8 +155,8 @@ const Carga = () => {
 
   const CalcLiq = () => {
     const valorliquido =
-      resultbase +
-      resultvinculo -
+      recebido +
+      outroVinculo -
       (inssoutros +
         inssatual +
         resultsest +
@@ -157,6 +166,7 @@ const Carga = () => {
   };
 
   const CalcInss = () => {
+    resultBIr ();
     CalcInssAt();
     CalInssOutros();
     CalIrrfSimpl();
@@ -261,23 +271,23 @@ const Carga = () => {
           <div className="box-mcalculo">
             <p className="box-memoria"> Memória de Cálculo</p>
             <p>
-              Base Valor Recebido 20% ={" "}
+              Base INSS 20% ={" "}
               <span id="result">{formatCurrency(resultbase)}</span>
             </p>
 
             <p>
               {" "}
-              Base Outros Vinculos 20% ={" "}
+              Base Out. Vinculos INSS 20% ={" "}
               <span id="result">{formatCurrency(resultvinculo)}</span>
             </p>
 
             <p>
               {" "}
-              INSS Atual = <span id="result">{formatCurrency(inssatual)} </span>
+              INSS Atual 11% = <span id="result">{formatCurrency(inssatual)} </span>
             </p>
             <p>
               {" "}
-              INSS Out. Vinculos ={" "}
+              INSS Out. Vinculos 11% ={" "}
               <span id="result">{formatCurrency(inssoutros)}</span>
             </p>
             <p>
@@ -287,13 +297,10 @@ const Carga = () => {
 
             <p>
               {" "}
-              Dependentes ={" "}
-              <span id="result">{formatCurrency(resultdependentes)}</span>
+              Base IRRF 10% ={" "}
+              <span id="result">{formatCurrency (bcarga)}</span>
             </p>
-            <p>
-              {" "}
-              Pensão = <span id="result">{formatCurrency(resultpesnsao)}</span>
-            </p>
+
 
             <p>
               {" "}
@@ -304,6 +311,15 @@ const Carga = () => {
               {" "}
               IRRF Deduções Legais ={" "}
               <span id="result">{formatCurrency(resultirrdeducoes)}</span>
+            </p>
+            <p>
+              {" "}
+              Dependentes ={" "}
+              <span id="result">{formatCurrency(resultdependentes)}</span>
+            </p>
+            <p>
+              {" "}
+              Pensão = <span id="result">{formatCurrency(resultpesnsao)}</span>
             </p>
             <p>
               {" "}

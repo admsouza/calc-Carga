@@ -88,16 +88,16 @@ const Carga = () => {
   };
 
   const [bcarga, SetBcarga] = useState("")
-  const resultBIr = () => {
+  const resultBIr =  () => {
     const baseCarga = (recebido + outroVinculo) * 0.10 - (564.80)
     SetBcarga(baseCarga)
     
   }
 
 
-  const [resultirrfsimplicado, setResultIrrfSimplicado] = useState("");
-  const CalIrrfSimpl = () => {
-    const resultirrsimpl = bcarga 
+   const [resultirrfsimplicado, setResultIrrfSimplicado] = useState("");
+  const CalIrrfSimpl =  () => {
+     const resultirrsimpl =  bcarga 
        
     if (resultirrsimpl > 4664.68) {
       setResultIrrfSimplicado(resultirrsimpl * 0.275 - 896);
@@ -169,7 +169,7 @@ const Carga = () => {
     resultBIr ();
     CalcInssAt();
     CalInssOutros();
-    CalIrrfSimpl();
+   
     CaclSenat();
     CaclSest();
   };
@@ -184,6 +184,7 @@ const Carga = () => {
     Cacldeducoes();
     CalIrrfDeducoes();
     FormatDedu();
+    CalIrrfSimpl();
   };
   
 
